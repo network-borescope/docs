@@ -1,0 +1,8 @@
+----
+Nilson: 
+1) Conexões de entrada TCP para IPs na rede do POP-DF tendo como destino a porta 25 ou 587 estão se comunicando com servidores SMTP.
+2) Conexões de entrada TCP para IPs na rede do POP-DF tendo como destino a porta 110 ou 995 estão se comunicando com servidores POP3.
+
+----
+Eduardo: 
+1) Acessos DNS/UDP originados em servidores DNS, tem a porta 53 como porta origem.
