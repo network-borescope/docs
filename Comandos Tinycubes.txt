@@ -1,0 +1,130 @@
+Explicação:
+      O Tinycubes é uma ferramenta de armazenamento e visualização de 
+dados. Para tratar uma quantidade massiva de dados utiliza os comandos 
+schema, bounds e select para realizar requisições e filtrar os dados e desta 
+forma trabalhar com uma parcela reduzida e mais interessante dos dados.
+
+Select:
+      O comando de consulta select retorna os valores do campo passado 
+como parâmetro,a busca: select: ["quantidades"] retorna valores do campo 
+“quantidades”. O datacube, um schema associado que armazena um grupo de 
+dados de um usuário ou aplicação, é passado pelo campo from.O trecho do 
+comando: from: "antenas", determina que a busca dos dados deve ser feita no 
+datacube que armazena os dados referente as antenas.
+	O select possui dois campos que determinam o agrupamento dos dados: 
+group-by que determina a forma que as informações selecionadas devem ser 
+agrupadas e group-by-output que determina a formatação que os dados 
+encontrados são recebidos. O group-by tem como único parâmetro um campo, e 
+o retorno da busca é agrupado por este campo,  group-by: "ttl" em um select: 
+["quantidades"] retorna os valores do campo quantidades agrupados pelos 
+valores de ttl. O group-by-output tem dois possíveis parâmetros “kv” e “vs_ks”, 
+kv remete a key value, chave e valor, retornando assim os pares referentes a 
+cada linha da busca.Em vs_ks, vs representa values, valores, e ks representa 
+keys, chaves, essa opção retorna todos valores da busca e em seguida todas as 
+chaves.
+ 	No campo where são passados os critérios da seleção, pode ser um 
+critério simples, apenas um, ou uma lista com múltiplos critérios. Este campo 
+possui duas opções zrect e zpoly, 	que devem ser aplicadas a um campo e 
+delimitam um polígono no qual os os valores do campo devem estar inseridos. A 
+diferença entre os dois é que o zrect delimita um retângulo com dois pares de 
+coordenadas e zpoly um polígono qualquer delimitados por até 100 
+coordenadas.
+
+select:  Requisita valores de uma dimensão ou de um Content.
+* Formato: select lista-de-dimensões ou lista-de-contents [where]
+
+group-by: Agrega as informações selecionadas pela cláusula where em torno dos itens 
+especificados.
+group-by: dimensão ou content
+
+group-by-output: Define a formatação de retorno, tem como opção “kv” e “vs_ks”
+ group-by-output: [“kv”|| “vs_ks”]
+
+	kv: O resultado do agrupamento deve ser organizado no formato kv, ou seja, em
+pares contendo uma chave (key) e o valor(valor).
+ 
+	vs_ks: O resultado do agrupamento deve ser organizado da forma: Todos valores da 
+busca e em seguida todas as chaves
+
+where: Enumera critérios para seleção das arestas a serem utilizadas na construção das
+respostas.
+where: lista-de-critérios
+	Location:
+	zrect: Se os valores estão dentro ou fora de um retângulo formado por dois pares de 
+coordenadas. Tem como primeiro campo o zoom, que informa em que altura dimensional não é 
+mais necessário seguir arestas CHILD.
+
+	zpoly: Tem funcionamento similar ao zrect porém aceita até 100 pares de coordenadas 
+enquanto o zrect apenas 2. 
+
+	Between: retorna true se o valor do campo especificado está entre os valores passados 
+com parametro.
+
+
+Query select:
+{select: ["quantidades"], group-by: "ttl", group-by-output: "kv",…}
+from: "antenas"
+group-by: "ttl"
+group-by-output: "kv"
+id: 1
+select: ["quantidades"]
+0: "quantidades"
+
+where: [["location", "zrect", 14, -15.6210529910646, -48.333663940429695, -
+16.029975356905204,…],…]
+	0: ["location", "zrect", 14, -15.6210529910646, -48.333663940429695, -
+16.029975356905204,…]
+0: "location"
+1: "zrect"
+2: 14
+3: -15.6210529910646
+4: -48.333663940429695
+5: -16.029975356905204
+6: -47.46231079101563
+1: ["time", "between", 1604413860, 1604435460]
+0: "time"
+1: "between"
+2: 1604413860
+3: 1604435460
+
+Bounds:
+O comando bounds é utilizado para consultar o limites de uma determinada dimensão dos 
+dados. Possuí um campo where semelhante ao select, com zrect e zpoly.
+
+Bounds: 
+
+bounds dimensão [Where]
+
+where: lista-de-critérios
+	Location:
+zrect: Se os valores estão dentro ou fora de um retângulo formado por dois pares de 
+coordenadas. Tem como primeiro campo o zoom, que informa em que altura 
+dimensional não é mais necessário seguir arestas CHILD.
+	
+zpoly: Tem funcionamento similar ao zrect porém aceita até 100 pares de coordenadas 
+enquanto o zrect apenas 2. 
+
+
+Query bounds:
+	
+{bounds: "time", where: [["location", "zrect", 24, 85, -179, -85, 179]], dummy: [1], id: 1,…}
+bounds: "time"
+dummy: [1]
+0: 1
+from: "antenas"
+id: 1
+where: [["location", "zrect", 24, 85, -179, -85, 179]]
+	
+Schema 
+	Requisita o arquivo json utilizado para configurar a instância do tinycubes
+	em execução.
+	
+	schema from instância 
+	
+Query Schema
+{schema: [1], id: 1, from: "antenas"}
+from: "antenas"
+id: 1
+schema: [1]
+0: 1
+
