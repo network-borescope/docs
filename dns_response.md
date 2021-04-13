@@ -47,7 +47,9 @@ A prova da hipótese levantada se divide em 3 passos.
 ##### 3) Flexibilizar as regras da ```iptables``` e repetir os passos 1 e 2
 Para flexibilizar as regras executamos os comandos abaixo.
 ```sudo iptables -P INPUT ACCEPT```
+
 ```sudo iptables -P OUTPUT ACCEPT```
+
 ```sudo iptables -P FORWARD ACCEPT```
 
 ## Conclusão
