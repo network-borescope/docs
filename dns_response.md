@@ -37,6 +37,7 @@ Lista de servidores DNS(no formato ip hostname):
 * 177.8.81.233 dns2.eb.mil.br
 * 200.192.232.11 b.sec.dns.br
 * 200.130.11.91 ns3.fiocruz.br
+
 **Resultado: todos os servidores identificados são internos**
 #### 2) Tentar capturar tráfego que tenha como origem um DNS externo.
 ```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20 src 8.8.8.8```
