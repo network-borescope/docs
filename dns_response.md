@@ -49,7 +49,7 @@ Com este comando deviríamos capturar 20 pacotes que tivessem como origem o serv
 #### 3) Tentar capturar tráfego que tenha como origem determinada rede.
 ```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20 src net 8.8.0.0/16```
 
-Com este comando deviríamos capturar 20 pacotes de que tivessem como origem qualquer servidor dns do google(8.8.8.8 ou 8.8.4.4)
+Com este comando deviríamos capturar 20 pacotes de que tivessem como origem qualquer servidor dns do google(8.8.8.8 ou 8.8.4.4).
 
 **Resultado: nenhum pacote foi capturado**
 
@@ -66,6 +66,12 @@ Para flexibilizar as regras executamos os comandos abaixo.
 
 #### 5) Capturar respostas HTTP e verificar se alguma pertence a um servidor externo
 ```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20000 src port 80 > response.txt```
+
+Com este comando geramos capturamos 20000 pacotes que tinham como porta de origem a 80 e colocamos o resultado desta captura no arquivo "response.txt".
+
+```sudo tcpdump -i enp6s0f1 -vvv -tttt src port 80 > response2.txt```
+
+Com este comando geramos capturamos pacotes que tinham como porta de origem a 80, desta vez removemos o parâmetro "-n" do TcpDump para que ele resolvesse o nome dos ips, e colocamos o resultado desta captura no arquivo "response2.txt".
 
 **Resultado: nenhum dos pacotes capturados pertence a um servidor externo**
 
