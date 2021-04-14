@@ -64,16 +64,19 @@ Para flexibilizar as regras executamos os comandos abaixo.
 
 **Resultado: nenhum pacote foi capturado**
 
-#### 5) Capturar respostas HTTP e verificar se alguma pertence a um servidor externo
-```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20000 src port 80 > response.txt```
+#### 5) Capturar tráfego HTTP e verificar se algum pacote tem como origem servidor externo
+```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20000 port 80 > response.txt```
 
-Com este comando geramos capturamos 20000 pacotes que tinham como porta de origem a 80 e colocamos o resultado desta captura no arquivo "response.txt".
+Com este comando capturamos 20000 pacotes que tinham como porta de origem ou destino a porta 80 e colocamos o resultado desta captura no arquivo "response.txt".
 
+**Resultado: haviam requisições para servidores externos, mas não haviam respostas de servidores externos**
+
+#### 6) Capturar respostas HTTP e verificar se alguma pertence a um servidor externo
 ```sudo tcpdump -i enp6s0f1 -vvv -tttt src port 80 > response2.txt```
 
-Com este comando geramos capturamos pacotes que tinham como porta de origem a 80, desta vez removemos o parâmetro "-n" do TcpDump para que ele resolvesse o nome dos ips, e colocamos o resultado desta captura no arquivo "response2.txt".
+Com este comando capturamos pacotes que tinham como porta de origem a 80, desta vez removemos o parâmetro "-n" do TcpDump para que ele resolvesse o nome dos ips, e colocamos o resultado desta captura no arquivo "response2.txt".
 
-**Resultado: nenhum dos pacotes capturados pertence a um servidor externo**
+**Resultado: nenhum dos pacotes capturados pertence a um servidor externo, todos os ips resolvidos tinham terminação ".br"**
 
 ## Conclusão
 Por fim concluímos que a hipótese é verdadeira, pois no primeiro passo verificamos que todos os servidores DNS dos quais capturamos resposta eram internos e em nenhum dos passos seguintes conseguimos coletar respostas de servidores DNS externos. Como trabalhos futuros temos que levantar novas hipóteses, desta vez sobre o porque não conseguimos realizar a captura destes pacotes, e testá-las.
