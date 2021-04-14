@@ -16,17 +16,15 @@ sudo tcpdump -i "$INTERFACE" -l -U -vvv -n -tttt -c "$N" "$DNS" or "$WEB" > "$cu
 ```
 
 ## Análise
-Com o arquivo de coleta em mãos observou-se que apesar de termos requisições DNS para diversos servidores DNS, nenhum dos servidores DNS públicos mais utilizados(8.8.8.8, 8.8.8.4 e 1.1.1.1) estavam enviando respostas. Com base nisso levantamos uma hipótese.
+Com o arquivo de coleta em mãos observou-se que apesar de termos requisições DNS para diversos servidores DNS, nenhum dos servidores DNS públicos mais utilizados(8.8.8.8, 8.8.8.4 e 1.1.1.1) estavam enviando respostas. Considerando servidores nacionais como internos, e internacionais como externos, fizemos a seguinte suposição.
 
-Falta definir o que são servidores internos e externos....
-
-## ---------------- Hipótese 
-**Estamos capturando apenas respostas de servidores DNS internos.**
+## Suposição
+**Estamos recebendo na interface de captura apenas respostas de servidores internos**
 
 ### Prova
-A prova da hipótese se divide em 4 passos.
-#### 1) Utilizando o comando ```nslookup``` descobrir os servidores cujas respostas foram capturadas
-**Resultado**(no formato ip hostname):
+A prova da suposição se divide em 4 passos.
+#### 1) Utilizando o comando ```nslookup``` descobrir os servidores cujas respostas foram capturadas e classificá-los em internos ou externos
+Lista de servidores DNS(no formato ip hostname):
 * 200.192.233.10 c.dns.br
 * 200.192.232.14 e.sec.dns.br
 * 200.130.3.138 dns2.mec.gov.br
@@ -39,7 +37,7 @@ A prova da hipótese se divide em 4 passos.
 * 177.8.81.233 dns2.eb.mil.br
 * 200.192.232.11 b.sec.dns.br
 * 200.130.11.91 ns3.fiocruz.br
-* 
+**Resultado: todos os servidores identificados são internos**
 #### 2) Tentar capturar tráfego que tenha como origem um DNS externo.
 ```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20 src 8.8.8.8```
 
