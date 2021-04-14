@@ -22,7 +22,7 @@ Com o arquivo de coleta em mãos observou-se que apesar de termos requisições 
 **Estamos recebendo na interface de captura apenas respostas de servidores internos**
 
 ### Prova
-A prova da suposição se divide em 5 passos.
+A prova da suposição se divide em 6 passos.
 #### 1) Utilizando o comando ```nslookup``` descobrir os servidores cujas respostas foram capturadas e classificá-los em internos ou externos
 Lista de servidores DNS(no formato ip hostname):
 * 200.192.233.10 c.dns.br
