@@ -16,8 +16,7 @@ sudo tcpdump -i "$INTERFACE" -l -U -vvv -n -tttt -c "$N" "$DNS" or "$WEB" > "$cu
 ```
 
 ## Análise
-Com o arquivo de coleta em mãos observou-se que apesar de termos requisições DNS para diversos servidores DNS, nem todos estavam enviando a resposta.
-Com base neste resultados levantamos a seguite hipótese.
+Com o arquivo de coleta em mãos observou-se que apesar de termos requisições DNS para diversos servidores DNS, nenhum dos servidores DNS públicos mais utilizados(8.8.8.8, 8.8.8.4 e 1.1.1.1) estavam enviando respostas. Com base nisso levantamos uma hipótese.
 
 ### Hipótese
 **Estamos capturando apenas respostas de servidores DNS internos.**
@@ -25,7 +24,7 @@ Com base neste resultados levantamos a seguite hipótese.
 #### Prova
 A prova da hipótese levantada se divide em 4 passos.
 ##### 1) Utilizando o comando ```nslookup``` descobrir os servidores cujas respostas foram capturadas
-Resultado(no formato ip hostname):
+**Resultado**(no formato ip hostname):
 * 200.192.233.10 c.dns.br
 * 200.192.232.14 e.sec.dns.br
 * 200.130.3.138 dns2.mec.gov.br
@@ -40,12 +39,16 @@ Resultado(no formato ip hostname):
 * 200.130.11.91 ns3.fiocruz.br
 ##### 2) Tentar capturar tráfego que tenha como origem um DNS externo.
 ```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20 src 8.8.8.8```
+
 Com este comando deviríamos capturar 20 pacotes que tivessem como origem o servidor dns 8.8.8.8 do google.
-Resultado: **nenhum pacote foi capturado**
+
+**Resultado: nenhum pacote foi capturado**
 ##### 3) Tentar capturar tráfego que tenha como origem determinada rede.
 ```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20 src net 8.8.0.0/16```
+
 Com este comando deviríamos capturar 20 pacotes de que tivessem como origem qualquer servidor dns do google(8.8.8.8 ou 8.8.4.4)
-Resultado: **nenhum pacote foi capturado**
+
+**Resultado: nenhum pacote foi capturado**
 ##### 4) Flexibilizar as regras da ```iptables``` e repetir os passos 2 e 3
 Para flexibilizar as regras executamos os comandos abaixo.
 
@@ -54,8 +57,9 @@ Para flexibilizar as regras executamos os comandos abaixo.
 ```sudo iptables -P OUTPUT ACCEPT```
 
 ```sudo iptables -P FORWARD ACCEPT```
-Resultado: **nenhum pacote foi capturado**
+
+**Resultado: nenhum pacote foi capturado**
 ## Conclusão
-Por fim concluímos que a hipótese é verdadeira, pois no primeiro passo verificamos que todos os servidores DNS que capturamos resposta eram internos e em nenhum dos passos seguuintes conseguimos coletar respostas de servidores DNS externos. Como trabalhos futuros temos que levantar novas hipóteses, desta vez sobre o porque não conseguimos realizar a captura destes pacotes, e testá-las.
+Por fim concluímos que a hipótese é verdadeira, pois no primeiro passo verificamos que todos os servidores DNS que capturamos resposta eram internos e em nenhum dos passos seguintes conseguimos coletar respostas de servidores DNS externos. Como trabalhos futuros temos que levantar novas hipóteses, desta vez sobre o porque não conseguimos realizar a captura destes pacotes, e testá-las.
 
 *OBS: Todos os procedimentos aqui descritos foram realizados na máquina PoP DF no dia 12/04/2021*
