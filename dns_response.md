@@ -22,7 +22,7 @@ Com o arquivo de coleta em mãos observou-se que apesar de termos requisições 
 **Estamos recebendo na interface de captura apenas respostas de servidores internos**
 
 ### Prova
-A prova da suposição se divide em 4 passos.
+A prova da suposição se divide em 5 passos.
 #### 1) Utilizando o comando ```nslookup``` descobrir os servidores cujas respostas foram capturadas e classificá-los em internos ou externos
 Lista de servidores DNS(no formato ip hostname):
 * 200.192.233.10 c.dns.br
@@ -64,7 +64,12 @@ Para flexibilizar as regras executamos os comandos abaixo.
 
 **Resultado: nenhum pacote foi capturado**
 
+#### 5) Capturar respostas HTTP e verificar se alguma pertence a um servidor externo
+```sudo tcpdump -i enp6s0f1 -n -vvv -tttt -c 20000 src port 80 > response.txt```
+
+**Resultado: nenhum dos pacotes capturados pertence a um servidor externo**
+
 ## Conclusão
 Por fim concluímos que a hipótese é verdadeira, pois no primeiro passo verificamos que todos os servidores DNS dos quais capturamos resposta eram internos e em nenhum dos passos seguintes conseguimos coletar respostas de servidores DNS externos. Como trabalhos futuros temos que levantar novas hipóteses, desta vez sobre o porque não conseguimos realizar a captura destes pacotes, e testá-las.
 
-*OBS: Todos os procedimentos aqui descritos foram realizados na máquina PoP DF no dia 12/04/2021*
+*OBS: Todos os procedimentos aqui descritos foram realizados na máquina PoP DF nos dias 12/04/2021 e 14/04/2021*
