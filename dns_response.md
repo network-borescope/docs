@@ -79,6 +79,7 @@ Com este comando capturamos pacotes que tinham como porta de origem a 80, desta 
 **Resultado: nenhum dos pacotes capturados pertence a um servidor externo, todos os ips resolvidos tinham terminação ".br"**
 
 ## Conclusão
-Por fim concluímos que a hipótese é verdadeira, pois no primeiro passo verificamos que todos os servidores DNS dos quais capturamos resposta eram internos e em nenhum dos passos seguintes conseguimos coletar respostas de servidores DNS externos. Como trabalhos futuros temos que levantar novas hipóteses, desta vez sobre o porque não conseguimos realizar a captura destes pacotes, e testá-las.
+Por fim concluímos que a hipótese é verdadeira, pois no primeiro passo verificamos que todos os servidores DNS dos quais capturamos resposta eram internos e em nenhum dos passos seguintes conseguimos coletar respostas de servidores DNS externos. Imaginamos que a topologia seja algo como representado na figura abaixo, pois isto justificaria o comportamento apresentado.
+![Topologia](https://github.com/tinycubes/docs/blob/master/resource/topologia.png)
 
 *OBS: Todos os procedimentos aqui descritos foram realizados na máquina PoP DF nos dias 12/04/2021 e 14/04/2021*
