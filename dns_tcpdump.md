@@ -1,6 +1,8 @@
 # DNS TCPDUMP
 Arthur A. Vianna(Autor)
+
 Nilson L. Damasceno(Revisão)
+
 10/05/2021
 
 ## Objetivo
@@ -66,11 +68,14 @@ sudo tcpdump -i "$INTERFACE" -l -U -vvv -n -tttt -c "$N" "$DNS" or "$WEB" > "$cu
 ``` 172.253.230.3.38803 > 200.130.11.91.53: [udp sum ok] 40502% [1au] A? correio.fiocruz.br. ar: . OPT UDPsize=4096 DO (47) ```
 
 Neste exemplo, além dos campos previstos no padrão do TCPDump, temos o [udp sum ok], que nos diz que o pacote não foi corrompido.
+
 No request do exemplo, 172.253.230.3 pergunta pelo IPV4 de correio.fiocruz.br, no id nota-se o "%" que é DNS CHECKING DISABLED, temos também a flag [1au].
 
 ### Resposta Exemplo:
 ``` 200.130.11.91.53 > 172.253.230.3.38803: [udp sum ok] 40502*- q: A? correio.fiocruz.br. 3/3/4 correio.fiocruz.br. [1h] A 157.86.151.22, correio.fiocruz.br. [1h] A 157.86.151.20, correio.fiocruz.br. [1h] A 157.86.151.21 ns: fiocruz.br. [1h] NS ns3.fiocruz.br., fiocruz.br. [1h] NS ns2.fiocruz.br., fiocruz.br. [1h] NS ns1.fiocruz.br. ar: ns1.fiocruz.br. [1h] A 157.86.18.17, ns2.fiocruz.br. [1h] A 157.86.18.10, ns3.fiocruz.br. [1h] A 200.130.11.91, . OPT UDPsize=4096 DO (197) ```
 
 Neste exemplo, temos novamente o [udp sum ok], no response de exemplo, o id está acompanhado de "*" e "-", que diz que o servidor enviou a resposta é um servidor autoritativo e que DNS recursivo está disponível.
-A resposta contém 3 registros de resposta para a pergunta "A? correio.fiocruz.br.", 3 registros de name server que conseguem responder a essa pergunta e 4 registros adicionais. Em seguida temos, na ordem, os 3 ips de resposta para a pergunta, o nome dos 3 servidores conhecidos capazes de responder a pergunta e após o ar:(additional records) temos o nome e o ip dos 3 servidores que também respondem a perggunta.
+
+A resposta contém 3 registros de resposta para a pergunta "A? correio.fiocruz.br.", 3 registros de name server que conseguem responder a essa pergunta e 4 registros adicionais. Em seguida temos, na ordem, os 3 ips de resposta para a pergunta, o nome dos 3 servidores conhecidos capazes de responder a pergunta e após o ar:(additional records) temos o nome e o ip dos 3 servidores que também respondem a pergunta.
+
 Note que, o servidor que respondeu a pergunta é o ns3.fiocruz.br, ele colocou a si mesmo na lista.
