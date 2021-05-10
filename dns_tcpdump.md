@@ -76,6 +76,6 @@ No request do exemplo, 172.253.230.3 pergunta pelo IPV4 de correio.fiocruz.br, n
 
 Neste exemplo, temos novamente o [udp sum ok], no response de exemplo, o id está acompanhado de "*" e "-", que diz que o servidor enviou a resposta é um servidor autoritativo e que DNS recursivo está disponível.
 
-A resposta contém 3 registros de resposta para a pergunta "A? correio.fiocruz.br.", 3 registros de name server que conseguem responder a essa pergunta e 4 registros adicionais. Em seguida temos, na ordem, os 3 ips de resposta para a pergunta, o nome dos 3 servidores conhecidos capazes de responder a pergunta e após o ar:(additional records) temos o nome e o ip dos 3 servidores que também respondem a pergunta.
+O campo com valor 3/3/4 significa que a resposta contém 3 registros de resposta para a pergunta "A? correio.fiocruz.br.", 3 registros de name server que conseguem responder a essa pergunta e 4 registros adicionais. Em seguida temos, na ordem, os 3 ips de resposta para a pergunta, cada um precedido pela validade daquela resposta, no exemplo [1h] que significa 1 hora, em seguita o nome dos 3 servidores conhecidos capazes de responder a pergunta e após o ar:(additional records) o nome e o ip dos 3 servidores que também respondem a pergunta.
 
 Note que, o servidor que respondeu a pergunta é o ns3.fiocruz.br, ele colocou a si mesmo na lista.
