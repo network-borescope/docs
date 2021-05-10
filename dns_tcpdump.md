@@ -25,7 +25,7 @@ Este documento tem como objetivo sintetizar as informações a respeito do padr�
 * * [n]: nameserver, indica que há uma anomalia na seção de nameservers da query.
 * qtype: A?, AAAA?, TXT?, ...
 * qclass: IN, CHAOS, HS, ANY
-* * IN: the arpa internet
+* * IN: the arpa internet(é a classe padrão, ela é omitida, as outras representam um problema e por isso são exibidas)
 * * CHAOS: for chaos net (MIT)
 * * HS: for Hesiod name server (MIT) (XXX)
 * * ANY: wildcard match
