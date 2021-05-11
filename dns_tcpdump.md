@@ -36,7 +36,7 @@ Este documento tem como objetivo sintetizar as informações a respeito do padr�
 ``` src > dst: id op rcode flags a/n/au type class data (len) ```
 
 * id: query id(um par requisição resposta possui o mesmo query id). Este campo pode ser acompanhado de "*", "-", "|" e "$".
-* * id*: AUTHORITATIVE ANSWER
+* * id*: AUTHORITATIVE ANSWER (resposta oficial)
 * * id-: RECURSION AVAIABLE
 * * id|: TRUNCATED MESSAGGE
 * * id$: AUTHENTIC DATA FROM NAMED
@@ -74,7 +74,7 @@ No request do exemplo, 172.253.230.3 pergunta pelo IPV4 de correio.fiocruz.br, n
 ### Resposta Exemplo:
 ``` 200.130.11.91.53 > 172.253.230.3.38803: [udp sum ok] 40502*- q: A? correio.fiocruz.br. 3/3/4 correio.fiocruz.br. [1h] A 157.86.151.22, correio.fiocruz.br. [1h] A 157.86.151.20, correio.fiocruz.br. [1h] A 157.86.151.21 ns: fiocruz.br. [1h] NS ns3.fiocruz.br., fiocruz.br. [1h] NS ns2.fiocruz.br., fiocruz.br. [1h] NS ns1.fiocruz.br. ar: ns1.fiocruz.br. [1h] A 157.86.18.17, ns2.fiocruz.br. [1h] A 157.86.18.10, ns3.fiocruz.br. [1h] A 200.130.11.91, . OPT UDPsize=4096 DO (197) ```
 
-Neste exemplo, temos novamente o [udp sum ok], no response de exemplo, o id está acompanhado de "*" e "-", que diz que o servidor que enviou a resposta é um servidor autoritativo e que DNS recursivo está disponível.
+Neste exemplo, temos novamente o [udp sum ok], no response de exemplo, o id está acompanhado de "*" e "-", que diz que o servidor que enviou a resposta é um servidor oficial e que DNS recursivo está disponível.
 
 O campo com valor 3/3/4 significa que a resposta contém 3 registros de resposta para a pergunta "A? correio.fiocruz.br.", 3 registros de name server que conseguem responder a essa pergunta e 4 registros adicionais. Em seguida temos, na ordem, os 3 ips de resposta para a pergunta, cada um precedido pela validade daquela resposta, no exemplo [1h] que significa 1 hora, em seguida o nome dos 3 servidores conhecidos capazes de responder a pergunta e após o "ar:"(additional records) o nome e o ip dos 3 servidores que também respondem a pergunta.
 
