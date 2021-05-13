@@ -18,7 +18,10 @@ Este documento tem como objetivo sintetizar as informações a respeito do padr�
 * id: query id(um par requisição resposta possui o mesmo query id). Este campo pode ser acompanhado de "+" ou "%".
 * * id+: DNS RECURSION DESIRED
 * * id%: DNS CHECKING DISABLED
-* op?: -
+* op?: operation
+* * QUERY: query padrão, é omitido.
+* * IQUERY: inverse query
+* * STATUS: nameserver status query
 * flags: corresponde a anomalias encontradas pelo TCPdump, são colocadas entre colchetes, seus valores podem ser: [xau], [xa] e [xn], onde x é um contador.
 * * [au]: additional records, indica que há uma anomalia na seção de registros adicionais da query.
 * * [a]: answer, indica que há uma anomalia na seção de resposta da query.
@@ -40,13 +43,14 @@ Este documento tem como objetivo sintetizar as informações a respeito do padr�
 * * id-: RECURSION AVAIABLE
 * * id|: TRUNCATED MESSAGGE
 * * id$: AUTHENTIC DATA FROM NAMED
-* op: -
 * rcode: response code, campo usado para exibir erros como, FormErr, NXDomain, Refused, NotAuth, ...
 * flags a/n/au
 * * a número de registros de resposta
 * * u número de registros name server
 * * au número de registros adicionais
 * type: A, AAAA, TXT, ...
+
+*OBS: quando o rcode é exibido, ou seja, quando ocorre um erro, ele aparece entre o id e o símbolo que acompanho o id, desta forma temos algo como Refused-*
 
 ## Exemplos
 
@@ -79,3 +83,10 @@ Neste exemplo, temos novamente o [udp sum ok], no response de exemplo, o id est�
 O campo com valor 3/3/4 significa que a resposta contém 3 registros de resposta para a pergunta "A? correio.fiocruz.br.", 3 registros de name server que conseguem responder a essa pergunta e 4 registros adicionais. Em seguida temos, na ordem, os 3 ips de resposta para a pergunta, cada um precedido pela validade daquela resposta, no exemplo [1h] que significa 1 hora, em seguida o nome dos 3 servidores conhecidos capazes de responder a pergunta e após o "ar:"(additional records) o nome e o ip dos 3 servidores que também respondem a pergunta.
 
 Note que, o servidor que respondeu a pergunta é o ns3.fiocruz.br, ele colocou a si mesmo na lista.
+
+
+## Referências
+1) Manual TCPDump http://www.tcpdump.org/manpages/tcpdump.1.html
+2) Código Fonte TCPDump https://github.com/the-tcpdump-group/tcpdump
+3) https://www.netmeister.org/blog/dns-tcpdump.html
+4) https://nil.uniza.sk/using-tcpdump-diagnostics-dns-debian/
