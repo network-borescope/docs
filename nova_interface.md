@@ -15,7 +15,7 @@ Adquiridas com `sudo ifconfig`
 A interface antiga é `enp6s0f1`.
 A partir disso é esperado que ` enp6s0f0` seja a nova interface de output.
 
-##Comando de captura com tcpdump:
+## Comando de captura com tcpdump:
 ```
 sudo tcpdump -i "$INTERFACE" -l -U -vvv -n -tttt -c 10000 "$DNS" or "$WEB" > "$current_directory/data/$FILE"
 ```
@@ -26,7 +26,7 @@ Onde:
    - F0: t_f0_20210602_124437.txt
    - F1: t_f1_20210602_124748.txt
 
-##Conferindo os arquivos obtidos:
+## Conferindo os arquivos obtidos:
 
 Para conferir os arquivos foi feita uma busca por mensagens enviadas ou recebidas pelo IP `8.8.8.8` externo a rede.
 
