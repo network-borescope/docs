@@ -27,6 +27,7 @@ Onde:
    - F1: t_f1_20210602_124748.txt
 
 ##Conferindo os arquivos obtidos:
+
 Para conferir os arquivos foi feita uma busca por mensagens enviadas ou recebidas pelo IP `8.8.8.8` externo a rede.
 
 O arquivo F1 possou duas ocorrências deste IP como remetente e nenhuma como destinatário.
