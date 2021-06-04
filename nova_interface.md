@@ -1,6 +1,6 @@
 # Teste de captura para nova interface.
 
-A interface antiga passa a ser somente de input e uma nova interface foi gerada para output.
+A interface antiga passa a ser somente de tráfego de origem interna e uma nova interface foi gerada para tráfego de origem externa.
 
 ## Interfaces disponíveis:
 
@@ -13,7 +13,7 @@ Adquiridas com `sudo ifconfig`
 - lo
 ```
 A interface antiga é `enp6s0f1`.
-A partir disso é esperado que ` enp6s0f0` seja a nova interface de output.
+A partir disso é esperado que ` enp6s0f0` seja a nova interface de origem externa.
 
 ## Comando de captura com tcpdump:
 ```
@@ -36,7 +36,7 @@ O arquivo F1 possou duas ocorrências deste IP como remetente e nenhuma como des
 
 8.8.8.8.53 > 200.130.15.191.53: [udp sum ok] 10977 q: A? scontent.fbsb9-1.fna.fbcdn.net. 1/0/1 scontent.fbsb9-1.fna.fbcdn.net. [50s] A 200.143.247.209 ar: . OPT UDPsize=512 DO (75)
 ```
-Caracterizando-o como interface de input.
+Caracterizando-o como interface de origem interna.
 
 O arquivo F0 possou diversas ocorrências deste IP como destinatário e nenhuma como remetente.
 ```
@@ -44,4 +44,4 @@ O arquivo F0 possou diversas ocorrências deste IP como destinatário e nenhuma 
 
 200.130.1.38.42457 > 8.8.8.8.53: [udp sum ok] 56456+ A? media-gig2-1.cdn.whatsapp.net. (47)
 ```
-Caracterizando-o como interface de output.
+Caracterizando-o como interface de origem externa.
