@@ -1,8 +1,8 @@
 # Filtro de múltiplos serviços.
 
-O código fonte se encontra em `/home/borescope/tools/filter_select_file/fonte`
+O código fonte se encontra em `/home/borescope/tools/filter_select_file/fonte`.
 
-Os arquivos gerados são armazenados em `/home/borescope/tools/filter_select_file/fonte/data`
+Os arquivos gerados são armazenados em `/home/borescope/tools/filter_select_file/fonte/data`.
 
 Os arquivos de saída são gerados a cada 5 minutos até o fim da coleta.
 
