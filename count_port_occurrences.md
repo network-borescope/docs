@@ -45,6 +45,6 @@ Este passo está marcado como opcional pois ele simplesmente ordena o arquivo em
 
 `sort -nr saida6.txt > saida7.txt`
 
-## Podemos combinar todos os paços usando pipe(|)
+## Podemos combinar todos os passos usando pipe(|)
 
 `grep "^    " input.txt | cut -d ":" -f 1 | cut -d ">" -f 2 | cut -d "." -f 5 | sort | uniq -c | sort -nr > output.txt`
