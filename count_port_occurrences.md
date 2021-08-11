@@ -13,7 +13,7 @@ Este documento tem como objetivo apresentar o passo a passo para gerar um arquiv
 
 Com este comando será gerado um arquivo que contém apenas a linha que possui a informação da porta de cada pacote.
 
-`grep "^    " input.txt > output.txt`
+`grep -E '^ {4}' input.txt > output.txt`
 
 ### Passo 2
 Com este comando será gerado um arquivo que contém apenas a parte da linha que possui as informações de ip de origem e destino, e porta de origem e destino.
@@ -47,4 +47,4 @@ Este passo está marcado como opcional pois ele simplesmente ordena o arquivo em
 
 ## Podemos combinar todos os passos usando pipe(|)
 
-`grep "^    " input.txt | cut -d ":" -f 1 | cut -d ">" -f 2 | cut -d "." -f 5 | sort | uniq -c | sort -nr > output.txt`
+`grep -E '^ {4}' input.txt | cut -d ":" -f 1 | cut -d ">" -f 2 | cut -d "." -f 5 | sort | uniq -c | sort -nr > output.txt`
